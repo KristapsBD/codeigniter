@@ -5,18 +5,24 @@
 <table border="1" cellpadding="5" width="100%">
     <thead>
         <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Price</th>
+            <th>ID</th>
+            <th>Razotajs</th>
+            <th>Uzskaites datums</th>
+            <th>Registracijas numurs</th>
+            <th>Modelis</th>
+            <th>Ir uzskaite</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($auto as $item): ?>
         <tr>
-            <td><?php echo $item['title']; ?></td>
-            <td><?php echo $item['description']; ?></td>
-            <td>$<?php echo $item['price']; ?></td>
+            <td><?php echo $item['id']; ?></td>
+            <td><?php echo $item['razotajs_id']; ?></td>
+            <td><?php echo $item['uzskaites_datums']; ?></td>
+            <td><?php echo $item['registracijas_numurs']; ?></td>
+            <td><?php echo $item['modelis']; ?></td>
+            <td><?php echo $item['ir_uzskaite']; ?></td>
             <td>
                 <a href="<?php echo site_url('auto/edit/'.$item['id']); ?>">Edit</a>
                 <a href="<?php echo site_url('auto/delete/'.$item['id']); ?>">Delete</a>

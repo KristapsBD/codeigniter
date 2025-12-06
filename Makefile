@@ -1,22 +1,22 @@
 .PHONY: up down logs shell db recreate
 
 up:
-	docker-compose up -d
+	docker compose up -d
 
 down:
-	docker-compose down
+	docker compose down
 
 logs:
-	docker-compose logs -f
+	docker compose logs -f
 
 shell:
-	docker-compose exec web bash
+	docker compose exec web bash
 
 db:
-	docker-compose exec db mysql -u user -p codeigniter
+	docker compose exec db mysql -u user -p codeigniter
 
 recreate:
-	docker-compose up -d --build --force-recreate
+	docker compose up -d --build --force-recreate
 
 date:
 	date +%Y%m%d%H%M%S

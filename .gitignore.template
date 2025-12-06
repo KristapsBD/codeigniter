@@ -1,27 +1,17 @@
-application/config/development/
-application/config/testing/
-application/config/production/
-application/config/database.php
-application/config/config.php
+.env
+
 application/cache/*
 !application/cache/index.html
 !application/cache/.htaccess
+
 application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
-user_guide_src/build/*
-user_guide_src/cilex.phar
-user_guide_src/composer.lock
-user_guide_src/vendor/
 
-.env
-.htaccess
+vendor/
 
 .idea/
 .vscode/
 *.swp
 .DS_Store
 Thumbs.db
-
-vendor/
-composer.lock

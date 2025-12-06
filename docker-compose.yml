@@ -11,14 +11,16 @@ services:
       - db
     networks:
       - ci3-network
+    env_file:
+      - .env
 
   db:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: codeigniter
-      MYSQL_USER: user
-      MYSQL_PASSWORD: option123
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
     ports:
       - "3306:3306"
     volumes:
