@@ -6,8 +6,11 @@ class Auto_model extends CI_Model {
     }
 
     public function get_all_auto() {
-        $query = $this->db->get('auto');
-        return $query->result_array();
+        $this->db->select('auto.*, razotajs.nosaukums as manufacturer_name');
+        $this->db->from('auto');
+        $this->db->join('razotajs', 'razotajs.id = auto.razotajs_id');
+        $this->db->order_by('auto.id', 'DESC');
+        return $this->db->get()->result_array();
     }
 
     public function get_auto($id) {

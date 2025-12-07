@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>My App</title>
+    <title>My Auto App</title>
     <style>
         body { font-family: sans-serif; padding: 20px; }
         nav { background: #eee; padding: 10px; margin-bottom: 20px; }
