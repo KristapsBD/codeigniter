@@ -1,0 +1,33 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+$lang['form_validation_required']		= 'Lauks "{field}" ir obligāts.';
+$lang['form_validation_isset']			= 'Laukam "{field}" ir jābūt norādītam.';
+$lang['form_validation_valid_email']		= 'Laukā "{field}" jābūt derīgai e-pasta adresei.';
+$lang['form_validation_valid_emails']		= 'Laukā "{field}" jābūt tikai derīgām e-pasta adresēm.';
+$lang['form_validation_valid_url']		= 'Laukā "{field}" jābūt derīgai URL adresei.';
+$lang['form_validation_valid_ip']		= 'Laukā "{field}" jābūt derīgai IP adresei.';
+$lang['form_validation_valid_base64']		= 'Laukā "{field}" jābūt derīgai Base64 virknei.';
+$lang['form_validation_min_length']		= 'Lauka "{field}" garumam jābūt vismaz {param} rakstzīmēm.';
+$lang['form_validation_max_length']		= 'Lauka "{field}" garums nedrīkst pārsniegt {param} rakstzīmes.';
+$lang['form_validation_exact_length']		= 'Lauka "{field}" garumam jābūt precīzi {param} rakstzīmēm.';
+$lang['form_validation_alpha']			= 'Lauks "{field}" drīkst saturēt tikai alfabēta burtus.';
+$lang['form_validation_alpha_numeric']		= 'Lauks "{field}" drīkst saturēt tikai burtus un ciparus.';
+$lang['form_validation_alpha_numeric_spaces']	= 'Lauks "{field}" drīkst saturēt tikai burtus, ciparus un atstarpes.';
+$lang['form_validation_alpha_dash']		= 'Lauks "{field}" drīkst saturēt tikai burtus, ciparus, apakšsvītras un domuzīmes.';
+$lang['form_validation_numeric']		= 'Lauks "{field}" drīkst saturēt tikai skaitļus.';
+$lang['form_validation_is_numeric']		= 'Lauks "{field}" drīkst saturēt tikai ciparus.';
+$lang['form_validation_integer']		= 'Laukam "{field}" ir jābūt veselam skaitlim.';
+$lang['form_validation_regex_match']		= 'Lauka "{field}" formāts nav pareizs.';
+$lang['form_validation_matches']		= 'Lauks "{field}" nesakrīt ar lauku {param}.';
+$lang['form_validation_differs']		= 'Laukam "{field}" ir jāatšķiras no lauka {param}.';
+$lang['form_validation_is_unique'] 		= 'Laukam "{field}" jāsatur unikāla vērtība.';
+$lang['form_validation_is_natural']		= 'Lauks "{field}" drīkst saturēt tikai ciparus.';
+$lang['form_validation_is_natural_no_zero']	= 'Lauks "{field}" drīkst saturēt tikai ciparus un tam ir jābūt lielākam par nulli.';
+$lang['form_validation_decimal']		= 'Laukam "{field}" jābūt decimālskaitlim.';
+$lang['form_validation_less_than']		= 'Laukā "{field}" jābūt skaitlim, kas ir mazāks par {param}.';
+$lang['form_validation_less_than_equal_to']	= 'Laukā "{field}" jābūt skaitlim, kas ir mazāks vai vienāds ar {param}.';
+$lang['form_validation_greater_than']		= 'Laukā "{field}" jābūt skaitlim, kas ir lielāks par {param}.';
+$lang['form_validation_greater_than_equal_to']	= 'Laukā "{field}" jābūt skaitlim, kas ir lielāks vai vienāds ar {param}.';
+$lang['form_validation_error_message_not_set']	= 'Neizdevās piekļūt kļūdas paziņojumam, kas atbilst lauka nosaukumam {field}.';
+$lang['form_validation_in_list']		= 'Laukam "{field}" jābūt vienam no: {param}.';

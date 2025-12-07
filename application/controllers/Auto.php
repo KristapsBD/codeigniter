@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Auto extends CI_Controller {
+class Auto extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -12,23 +12,29 @@ class Auto extends CI_Controller {
     public function index() {
         $data['auto'] = $this->auto_model->get_all_auto();
         $data['manufacturers'] = $this->manufacturer_model->get_all_manufacturers();
-        $this->load->view('auto/list', $data);
+        $data['view_to_load'] = 'auto/list';
+        $data['page_title'] = 'Auto Saraksts';
+        $this->load->view('layouts/main', $data);
     }
 
     public function create() {
+        $this->check_admin();
+
         $data['manufacturers'] = $this->manufacturer_model->get_all_manufacturers();
-        $this->load->view('auto/create', $data);   
+        $data['view_to_load'] = 'auto/create';
+        $data['page_title'] = 'Izveidot Auto';
+        $this->load->view('layouts/main', $data);   
     }
 
     public function store() {
-        $this->form_validation->set_rules('razotajs_id', 'Razotajs', 'required|integer');
-        $this->form_validation->set_rules('uzskaites_datums', 'Uzskaites datums', 'required|regex_match[/^\d{4}-\d{2}-\d{2}$/]'); //YYYY-MM-DD
-        $this->form_validation->set_rules('registracijas_numurs', 'Registracijas numurs', 'required|exact_length[6]|regex_match[/^[A-Z]{2}[0-9]{4}$/]');
-        $this->form_validation->set_rules('modelis', 'Modelis', 'required|alpha_numeric_spaces|trim|max_length[255]');
-        $this->form_validation->set_rules('ir_uzskaite', 'Ir uzskaite', 'integer|in_list[0,1]');
+        $this->check_admin();
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->load->view('auto/create');
+        $data['manufacturers'] = $this->manufacturer_model->get_all_manufacturers();
+        $data['view_to_load'] = 'auto/create';
+        $data['page_title'] = 'Izveidot Auto';
+
+        if ($this->form_validation->run('auto_creation') == FALSE) {
+            $this->load->view('layouts/main', $data);
         } else {
             $this->auto_model->create_auto();
             redirect('auto');
@@ -38,21 +44,19 @@ class Auto extends CI_Controller {
     public function edit($id) {
         $data['auto'] = $this->auto_model->get_auto($id);
         $data['manufacturers'] = $this->manufacturer_model->get_all_manufacturers();
-        $this->load->view('auto/edit', $data);
+        $data['view_to_load'] = 'auto/edit';
+        $data['page_title'] = 'Rediģēt Auto';
+        $this->load->view('layouts/main', $data);
     }
 
     public function update($id) {
-        $this->form_validation->set_rules('razotajs_id', 'Razotajs', 'required|integer');
-        $this->form_validation->set_rules('uzskaites_datums', 'Uzskaites datums', 'required|regex_match[/^\d{4}-\d{2}-\d{2}$/]'); //YYYY-MM-DD
-        $this->form_validation->set_rules('registracijas_numurs', 'Registracijas numurs', 'required|exact_length[6]|regex_match[/^[A-Z]{2}[0-9]{4}$/]');
-        $this->form_validation->set_rules('modelis', 'Modelis', 'required|alpha_numeric_spaces|trim|max_length[255]');
-        $this->form_validation->set_rules('ir_uzskaite', 'Ir uzskaite', 'integer|in_list[0,1]');
-
         $data['auto'] = $this->auto_model->get_auto($id);
         $data['manufacturers'] = $this->manufacturer_model->get_all_manufacturers();
+        $data['view_to_load'] = 'auto/edit';
+        $data['page_title'] = 'Rediģēt Auto';
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->load->view('auto/edit', $data);
+        if ($this->form_validation->run('auto_creation') == FALSE) {
+            $this->load->view('layouts/main', $data);
         } else {
             $this->auto_model->update_auto($id);
             redirect('auto');
@@ -60,6 +64,8 @@ class Auto extends CI_Controller {
     }
 
     public function delete($id) {
+        $this->check_admin();
+
         $this->auto_model->delete_auto($id);
         redirect('auto');
     }

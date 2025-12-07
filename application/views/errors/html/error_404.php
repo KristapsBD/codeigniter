@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>404 Page Not Found</title>
+<title>404 Lapa nav atrasta</title>
 <style type="text/css">
 
 ::selection { background-color: #E13300; color: white; }
@@ -50,15 +50,17 @@ code {
 	box-shadow: 0 0 8px #D0D0D0;
 }
 
-p {
+p, a {
 	margin: 12px 15px 12px 15px;
 }
 </style>
 </head>
 <body>
 	<div id="container">
-		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
+		<h1>404 Lapa nav atrasta</h1>
+		<p>Diemžēl jūsu pieprasītā lapa neeksistē.</p>
+		
+		<a href="<?php echo config_item('base_url'); ?>">Atgriezties uz sākumu</a>
 	</div>
 </body>
 </html>

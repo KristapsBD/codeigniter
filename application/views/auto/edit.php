@@ -1,11 +1,11 @@
-<h2>Edit Auto</h2>
+<h2>Rediģēt Auto</h2>
     <?php echo validation_errors('<div class="error">', '</div>'); ?>
 
     <?php echo form_open('auto/update/'.$auto['id']); ?>        
 
-        <label>Razotajs</label><br>
+        <label>Ražotājs</label><br>
         <select name="razotajs_id" required>
-            <option value="">-- Select --</option>
+            <option value="">-- Izvēlies --</option>
             <?php foreach($manufacturers as $m): ?>
                 <option value="<?php echo $m['id']; ?>" <?php echo $auto['razotajs_id'] == $m['id'] ? 'selected' : ''; ?>><?php echo $m['nosaukums']; ?></option>
             <?php endforeach; ?>
@@ -14,11 +14,11 @@
 
         <!-- Cannot be in the future -->
         <label>Uzskaites datums</label><br>
-        <input type="date" name="uzskaites_datums" value="<?php echo $auto['uzskaites_datums']; ?>" required max="<?php echo date('Y-m-d'); ?>">
+        <input type="date" name="uzskaites_datums" value="<?php echo $auto['uzskaites_datums']; ?>" required max="<?php echo date('Y-m-d'); ?>"><br>
         <small>(Nevar būt nākotnē)</small>
         <br><br>
 
-        <label>Registracijas numurs</label><br>
+        <label>Reģistrācijas numurs</label><br>
         <input 
             type="text" 
             name="registracijas_numurs" 
@@ -28,7 +28,7 @@
             required
             onkeyup="this.value = this.value.toUpperCase();" 
             value="<?php echo $auto['registracijas_numurs']; ?>"
-        >
+        ><br>
         <small>(Formāts: AA1234)</small>
         <br><br>
 
@@ -36,12 +36,12 @@
         <input type="text" name="modelis" value="<?php echo $auto['modelis']; ?>" required maxlength="255">
         <br><br>
 
-        <label>Ir/Nav uzskaitē</label>
+        <label>Ir/Nav uzskaitē</label><br>
         <select name="ir_uzskaite" required value="<?php echo $auto['ir_uzskaite']; ?>">
             <option value="1" <?php echo $auto['ir_uzskaite'] == 1 ? 'selected' : ''; ?>>Ir uzskaitē</option>
             <option value="0" <?php echo $auto['ir_uzskaite'] == 0 ? 'selected' : ''; ?>>Nav uzskaitē</option>
         </select>
         <br><br>
 
-        <input type="submit" value="Update">
-    </form>
+        <input type="submit" value="Atjaunot">
+<?php echo form_close(); ?>

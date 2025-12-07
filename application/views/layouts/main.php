@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>My Auto App</title>
+    <title><?php echo $page_title; ?></title>
     <style>
-        body { font-family: sans-serif; padding: 20px; }
-        nav { background: #eee; padding: 10px; margin-bottom: 20px; }
+        body { font-family: sans-serif; padding: 0; margin: 0; }
+        .container { padding: 20px; }
+        nav { background: #eee; padding: 20px; margin-bottom: 20px; }
         footer { margin-top: 50px; font-size: 0.8em; color: #777; border-top: 1px solid #ccc; }
     </style>
 </head>
@@ -13,13 +14,13 @@
 
     <nav>
         <strong>Auto App</strong> | 
-        <a href="<?php echo site_url('auto'); ?>">Auto</a> | 
         
         <?php if($this->session->userdata('logged_in')): ?>
-            <span>User: <?php echo $this->session->userdata('username'); ?></span> | 
-            <a href="<?php echo site_url('auth/logout'); ?>">Logout</a>
+            <a href="<?php echo site_url('auto'); ?>">Saraksts</a> | 
+            <span>Lietotājs: <?php echo $this->session->userdata('username'); ?></span> | 
+            <a href="<?php echo site_url('auth/logout'); ?>">Atteikties</a>
         <?php else: ?>
-            <a href="<?php echo site_url('auth'); ?>">Login</a>
+            <a href="<?php echo site_url('auth'); ?>">Pieslēgties</a>
         <?php endif; ?>
     </nav>
 
@@ -28,7 +29,7 @@
     </div>
 
     <footer>
-        <p>&copy; <?php echo date('Y'); ?> Kristaps Briks-Dravnieks. Loaded in {elapsed_time} seconds.</p>
+        <p>&copy; <?php echo date('Y'); ?> Kristaps Briks-Dravnieks. Ielādējās {elapsed_time} sekundēs.</p>
     </footer>
 
 </body>

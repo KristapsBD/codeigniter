@@ -24,4 +24,6 @@ RUN a2enmod rewrite headers
 
 RUN docker-php-ext-install mysqli pdo_mysql zip
 
+COPY php.ini /usr/local/etc/php/conf.d/custom.ini
+
 COPY . /var/www/html
