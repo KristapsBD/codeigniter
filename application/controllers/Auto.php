@@ -7,10 +7,8 @@ class Auto extends MY_Controller {
 
     /**
      * Base dependency injection.
-     * 
-     * @return void
      */
-    public function __construct(): void {
+    public function __construct() {
         parent::__construct();
         $this->load->model('auto_model');
         $this->load->model('manufacturer_model');

@@ -5,10 +5,8 @@ class Auto_model extends CI_Model {
 
     /**
      * Base dependency injection.
-     * 
-     * @return void
      */
-    public function __construct(): void {
+    public function __construct() {
         $this->load->database();
     }
 

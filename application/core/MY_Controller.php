@@ -7,10 +7,8 @@ class MY_Controller extends CI_Controller {
     
     /**
      * Base controller. Add authentication for all child controllers.
-     * 
-     * @return void
      */
-    public function __construct(): void {
+    public function __construct() {
         parent::__construct();
         if (!$this->session->userdata('logged_in')) {
             $this->session->set_flashdata('error', 'Jūs neesat autorizēts piekļūt šai lapai.');

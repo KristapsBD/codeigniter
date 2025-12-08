@@ -1,4 +1,4 @@
-    # Prevent MIME type attacks, clickjacking, hide server info
+# Prevent MIME type attacks, clickjacking, hide server info
 <IfModule mod_headers.c>
     Header set X-Content-Type-Options "nosniff"
     
