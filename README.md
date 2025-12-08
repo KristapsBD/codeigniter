@@ -2,6 +2,7 @@
 
 - Docker & Docker Compose
 - Git
+- Preferably Linux
 
 ### Setup
 
