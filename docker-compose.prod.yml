@@ -4,6 +4,8 @@ services:
   web:
     # TODO: Use image built from Dockerfile
     build: .
+    environment:
+      - CI_ENV=production
     restart: always
     ports:
       - "8080:80"

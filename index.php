@@ -54,7 +54,14 @@
  * NOTE: If you change these, also change the error_reporting() code below
  * TODO Set to PROD
  */
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+
+	$env = getenv('CI_ENV');
+
+	if (!$env) {
+		$env = isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development';
+	}
+
+	define('ENVIRONMENT', $env);
 
 /*
  *---------------------------------------------------------------
