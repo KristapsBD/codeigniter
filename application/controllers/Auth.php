@@ -11,6 +11,7 @@ class Auth extends CI_Controller {
      * @return void
      */
     public function index(): void {
+        // TODO Implement JWT token check
         if ($this->session->userdata('logged_in')) {
             redirect('auto');
         }
