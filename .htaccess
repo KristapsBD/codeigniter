@@ -21,6 +21,12 @@ ServerSignature Off
     RewriteEngine On
     RewriteBase /
 
+    # RewriteCond %{HTTP_HOST} !^www\. [NC]
+    # RewriteRule (.*) https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # RewriteCond %{HTTPS} off
+    # RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
     # Whitelist approach
     RewriteRule ^(index\.php|assets/|robots\.txt|favicon\.ico|$) - [L]
 

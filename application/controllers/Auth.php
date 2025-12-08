@@ -26,6 +26,7 @@ class Auth extends CI_Controller {
      * @return void
      */
     public function login_process(): void {
+        // TODO Add rate limiting
         if ($this->session->userdata('logged_in')) {
             redirect('auto');
         }

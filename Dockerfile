@@ -28,3 +28,5 @@ RUN docker-php-ext-install mysqli pdo_mysql zip
 COPY php.ini /usr/local/etc/php/conf.d/custom.ini
 
 COPY . /var/www/html
+
+RUN chown -R www-data:www-data /var/www/html
