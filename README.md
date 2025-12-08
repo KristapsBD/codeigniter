@@ -20,13 +20,13 @@
    php index.php migrate
    ```
 
-5. Access the application:
+5. Access application:
    - URL: http://localhost:8080
    - Default accounts:
      - Admin: `admin` / `admin`
      - User: `user` / `user`
 
-## Common Commands
+## Commands
 
 ```bash
 make up          # Start containers
