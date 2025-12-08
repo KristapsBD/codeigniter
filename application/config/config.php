@@ -225,7 +225,7 @@ $config['allow_get_array'] = TRUE;
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = 1;
 
 /*
 |--------------------------------------------------------------------------
@@ -391,6 +391,8 @@ $config['sess_save_path'] = sys_get_temp_dir();
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
+// $config['sess_driver'] = 'database'; // TODO: Better to use database for sessions in prod
+// $config['sess_save_path'] = 'ci_sessions';
 
 /*
 |--------------------------------------------------------------------------

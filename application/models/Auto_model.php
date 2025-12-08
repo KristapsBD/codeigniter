@@ -1,11 +1,23 @@
 <?php
+declare(strict_types=1);
+
 class Auto_model extends CI_Model {
 
-    public function __construct() {
+    /**
+     * Base dependency injection.
+     * 
+     * @return void
+     */
+    public function __construct(): void {
         $this->load->database();
     }
 
-    public function get_all_auto() {
+    /**
+     * Get all autos.
+     * 
+     * @return array
+     */
+    public function get_all_auto(): array {
         $this->db->select('auto.*, razotajs.nosaukums as manufacturer_name');
         $this->db->from('auto');
         $this->db->join('razotajs', 'razotajs.id = auto.razotajs_id');
@@ -13,12 +25,23 @@ class Auto_model extends CI_Model {
         return $this->db->get()->result_array();
     }
 
-    public function get_auto($id) {
+    /**
+     * Get single auto by ID.
+     * 
+     * @param int $id Auto ID
+     * @return array|null
+     */
+    public function get_auto(int $id): ?array {
         $query = $this->db->get_where('auto', array('id' => $id));
         return $query->row_array();
     }
 
-    public function create_auto() {
+    /**
+     * Create new auto.
+     * 
+     * @return bool
+     */
+    public function create_auto(): bool {
         $data = array(
             'razotajs_id' => $this->input->post('razotajs_id'),
             'uzskaites_datums' => $this->input->post('uzskaites_datums'),
@@ -29,7 +52,13 @@ class Auto_model extends CI_Model {
         return $this->db->insert('auto', $data);
     }
 
-    public function update_auto($id) {
+    /**
+     * Update existing auto.
+     * 
+     * @param int $id Auto ID
+     * @return bool
+     */
+    public function update_auto(int $id): bool {
         $data = array(
             'razotajs_id' => $this->input->post('razotajs_id'),
             'uzskaites_datums' => $this->input->post('uzskaites_datums'),
@@ -41,7 +70,13 @@ class Auto_model extends CI_Model {
         return $this->db->update('auto', $data);
     }
 
-    public function delete_auto($id) {
+    /**
+     * Delete auto by ID.
+     * 
+     * @param int $id Auto ID
+     * @return bool
+     */
+    public function delete_auto(int $id): bool {
         $this->db->where('id', $id);
         return $this->db->delete('auto');
     }

@@ -1,11 +1,23 @@
 <?php
+declare(strict_types=1);
+
 class Manufacturer_model extends CI_Model {
 
-    public function __construct() {
+    /**
+     * Base dependency injection.
+     * 
+     * @return void
+     */
+    public function __construct(): void {
         $this->load->database();
     }
 
-    public function get_all_manufacturers() {
+    /**
+     * Get all manufacturers.
+     * 
+     * @return array Array of manufacturers
+     */
+    public function get_all_manufacturers(): array {
         $query = $this->db->get('razotajs');
         return $query->result_array();
     }

@@ -1,9 +1,16 @@
 <?php
+declare(strict_types=1);
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends CI_Controller {
 
-    public function index() {
+    /**
+     * Display login form.
+     * 
+     * @return void
+     */
+    public function index(): void {
         if ($this->session->userdata('logged_in')) {
             redirect('auto');
         }
@@ -13,7 +20,12 @@ class Auth extends CI_Controller {
         $this->load->view('layouts/main', $data);
     }
 
-    public function login_process() {
+    /**
+     * Process login form submission.
+     * 
+     * @return void
+     */
+    public function login_process(): void {
         if ($this->session->userdata('logged_in')) {
             redirect('auto');
         }
@@ -50,7 +62,12 @@ class Auth extends CI_Controller {
         }
     }
 
-    public function logout() {
+    /**
+     * Logout the user and clean up session.
+     * 
+     * @return void
+     */
+    public function logout(): void {
         $this->session->sess_destroy();
         redirect('auth');
     }
