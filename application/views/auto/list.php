@@ -3,8 +3,6 @@
     <a href="<?php echo site_url('auto/create'); ?>">+ Pievienot Auto</a>
 <?php endif; ?>
 
-<br><br>
-
 <table border="1" cellpadding="5" width="100%">
     <thead>
         <tr>
@@ -26,13 +24,18 @@
             <td><?php echo html_escape($item['registracijas_numurs']); ?></td>
             <td><?php echo html_escape($item['modelis']); ?></td>
             <td><?php echo html_escape($item['ir_uzskaite'] == 1 ? 'Jā' : 'Nē'); ?></td>
-            <td>
-                <a href="<?php echo site_url('auto/edit/'.$item['id']); ?>">Rediģēt</a>
+            <td class="actions">
+                <a href="<?php echo site_url('auto/edit/'.$item['id']); ?>" class="edit">Rediģēt</a>
                 <?php if ($this->session->userdata('is_admin')): ?>
-                    <a href="<?php echo site_url('auto/delete/'.$item['id']); ?>" onclick="return confirm('Tiešām dzēst?');">Dzēst</a>
+                    <?php echo form_open('auto/delete/'.$item['id'], array('style' => 'display:inline;')); ?>
+                        <button type="submit" class="delete" onclick="return confirm('Tiešām dzēst?');">Dzēst</button>
+                    <?php echo form_close(); ?>
                 <?php endif; ?>
             </td>
         </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<br>
+<small>Atļautās darbības atkarīgas no lietotāja tiesībām.</small>

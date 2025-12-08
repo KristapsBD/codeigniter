@@ -4,12 +4,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Auth extends CI_Controller {
 
     public function index() {
+        if ($this->session->userdata('logged_in')) {
+            redirect('auto');
+        }
+
         $data['view_to_load'] = 'auth/login';
         $data['page_title'] = 'Pieslēgties';  
         $this->load->view('layouts/main', $data);
     }
 
     public function login_process() {
+        if ($this->session->userdata('logged_in')) {
+            redirect('auto');
+        }
+
         $this->load->library('form_validation');
         $this->load->model('user_model');
         $data['view_to_load'] = 'auth/login';
@@ -24,6 +32,8 @@ class Auth extends CI_Controller {
             $user = $this->user_model->login($username, $password);
 
             if ($user) {
+                $this->session->sess_regenerate(TRUE);
+                
                 $session_data = array(
                     'user_id' => $user['id'],
                     'username' => $user['username'],

@@ -1,24 +1,24 @@
 <h2>Rediģēt Auto</h2>
-    <?php echo validation_errors('<div class="error">', '</div>'); ?>
+    <?php echo validation_errors('<div class="error">Ievades kļūda: ', '</div>'); ?>
 
     <?php echo form_open('auto/update/'.$auto['id']); ?>        
 
-        <label>Ražotājs</label><br>
+        <label>Ražotājs</label>
         <select name="razotajs_id" required>
             <option value="">-- Izvēlies --</option>
             <?php foreach($manufacturers as $m): ?>
-                <option value="<?php echo $m['id']; ?>" <?php echo $auto['razotajs_id'] == $m['id'] ? 'selected' : ''; ?>><?php echo $m['nosaukums']; ?></option>
+                <option value="<?php echo html_escape($m['id']); ?>" <?php echo set_value('razotajs_id', $auto['razotajs_id']) == $m['id'] ? 'selected' : ''; ?>><?php echo html_escape($m['nosaukums']); ?></option>
             <?php endforeach; ?>
         </select>
-        <br><br>
+        
 
         <!-- Cannot be in the future -->
-        <label>Uzskaites datums</label><br>
-        <input type="date" name="uzskaites_datums" value="<?php echo $auto['uzskaites_datums']; ?>" required max="<?php echo date('Y-m-d'); ?>"><br>
+        <label>Uzskaites datums</label>
+        <input type="date" name="uzskaites_datums" value="<?php echo set_value('uzskaites_datums', $auto['uzskaites_datums']); ?>" required max="<?php echo date('Y-m-d'); ?>">
         <small>(Nevar būt nākotnē)</small>
-        <br><br>
+        
 
-        <label>Reģistrācijas numurs</label><br>
+        <label>Reģistrācijas numurs</label>
         <input 
             type="text" 
             name="registracijas_numurs" 
@@ -27,21 +27,21 @@
             maxlength="6"
             required
             onkeyup="this.value = this.value.toUpperCase();" 
-            value="<?php echo $auto['registracijas_numurs']; ?>"
-        ><br>
+            value="<?php echo set_value('registracijas_numurs', $auto['registracijas_numurs']); ?>"
+        >
         <small>(Formāts: AA1234)</small>
-        <br><br>
+        
 
-        <label>Modelis</label><br>
-        <input type="text" name="modelis" value="<?php echo $auto['modelis']; ?>" required maxlength="255">
-        <br><br>
+        <label>Modelis</label>
+        <input type="text" name="modelis" value="<?php echo set_value('modelis', $auto['modelis']); ?>" required maxlength="255">
+        
 
-        <label>Ir/Nav uzskaitē</label><br>
-        <select name="ir_uzskaite" required value="<?php echo $auto['ir_uzskaite']; ?>">
-            <option value="1" <?php echo $auto['ir_uzskaite'] == 1 ? 'selected' : ''; ?>>Ir uzskaitē</option>
-            <option value="0" <?php echo $auto['ir_uzskaite'] == 0 ? 'selected' : ''; ?>>Nav uzskaitē</option>
+        <label>Ir/Nav uzskaitē</label>
+        <select name="ir_uzskaite" required>
+            <option value="1" <?php echo set_value('ir_uzskaite', $auto['ir_uzskaite']) == 1 ? 'selected' : ''; ?>>Ir uzskaitē</option>
+            <option value="0" <?php echo set_value('ir_uzskaite', $auto['ir_uzskaite']) == 0 ? 'selected' : ''; ?>>Nav uzskaitē</option>
         </select>
-        <br><br>
+        
 
         <input type="submit" value="Atjaunot">
 <?php echo form_close(); ?>

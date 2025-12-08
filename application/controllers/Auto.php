@@ -37,12 +37,22 @@ class Auto extends MY_Controller {
             $this->load->view('layouts/main', $data);
         } else {
             $this->auto_model->create_auto();
+            $this->session->set_flashdata('success', 'Ieraksts veiksmīgi izveidots');
             redirect('auto');
         }
     }
 
     public function edit($id) {
+        if (!is_numeric($id)) {
+            show_404();
+        }
+        
         $data['auto'] = $this->auto_model->get_auto($id);
+        
+        if (!$data['auto']) {
+            show_404();
+        }
+        
         $data['manufacturers'] = $this->manufacturer_model->get_all_manufacturers();
         $data['view_to_load'] = 'auto/edit';
         $data['page_title'] = 'Rediģēt Auto';
@@ -50,7 +60,16 @@ class Auto extends MY_Controller {
     }
 
     public function update($id) {
+        if (!is_numeric($id)) {
+            show_404();
+        }
+        
         $data['auto'] = $this->auto_model->get_auto($id);
+        
+        if (!$data['auto']) {
+            show_404();
+        }
+        
         $data['manufacturers'] = $this->manufacturer_model->get_all_manufacturers();
         $data['view_to_load'] = 'auto/edit';
         $data['page_title'] = 'Rediģēt Auto';
@@ -59,14 +78,24 @@ class Auto extends MY_Controller {
             $this->load->view('layouts/main', $data);
         } else {
             $this->auto_model->update_auto($id);
+            $this->session->set_flashdata('success', 'Ieraksts veiksmīgi atjaunināts');
             redirect('auto');
         }
     }
 
     public function delete($id) {
         $this->check_admin();
+        
+        if ($this->input->server('REQUEST_METHOD') !== 'POST') {
+            show_error('Neatļauta darbība', 405);
+        }
+        
+        if (!is_numeric($id) || !$this->auto_model->get_auto($id)) {
+            show_404();
+        }
 
         $this->auto_model->delete_auto($id);
+        $this->session->set_flashdata('success', 'Ieraksts veiksmīgi dzēsts');
         redirect('auto');
     }
 }

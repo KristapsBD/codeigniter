@@ -2,22 +2,22 @@
     <?php echo validation_errors('<div class="error">', '</div>'); ?>
 
     <?php echo form_open('auto/store'); ?>
-        <label>Ražotājs</label><br>
+        <label>Ražotājs</label>
         <select name="razotajs_id" required>
             <option value="">-- Izvēlies --</option>
             <?php foreach($manufacturers as $m): ?>
-                <option value="<?php echo $m['id']; ?>" <?php echo set_value('razotajs_id') == $m['id'] ? 'selected' : ''; ?>><?php echo $m['nosaukums']; ?></option>
+                <option value="<?php echo html_escape($m['id']); ?>" <?php echo set_value('razotajs_id') == $m['id'] ? 'selected' : ''; ?>><?php echo html_escape($m['nosaukums']); ?></option>
             <?php endforeach; ?>
         </select>
-        <br><br>
+        
 
         <!-- Cannot be in the future -->
-        <label>Uzskaites datums</label><br>
-        <input type="date" name="uzskaites_datums" value="<?php echo set_value('uzskaites_datums'); ?>" required max="<?php echo date('Y-m-d'); ?>"><br>
+        <label>Uzskaites datums</label>
+        <input type="date" name="uzskaites_datums" value="<?php echo set_value('uzskaites_datums'); ?>" required max="<?php echo date('Y-m-d'); ?>">
         <small>(Nevar būt nākotnē)</small>
-        <br><br>
+        
 
-        <label>Reģistrācijas numurs</label><br>
+        <label>Reģistrācijas numurs</label>
         <input 
             type="text" 
             name="registracijas_numurs" 
@@ -27,20 +27,20 @@
             required
             onkeyup="this.value = this.value.toUpperCase();"
             value="<?php echo set_value('registracijas_numurs'); ?>"
-        ><br>
+        >
         <small>(Formāts: AA1234)</small>
-        <br><br>
+        
 
-        <label>Modelis</label><br>
+        <label>Modelis</label>
         <input type="text" name="modelis" value="<?php echo set_value('modelis'); ?>" required maxlength="255">
-        <br><br>
+        
 
-        <label>Ir/Nav uzskaitē</label><br>
+        <label>Ir/Nav uzskaitē</label>
         <select name="ir_uzskaite" required>
             <option value="1" <?php echo set_value('ir_uzskaite') == 1 ? 'selected' : ''; ?>>Ir uzskaitē</option>
             <option value="0" <?php echo set_value('ir_uzskaite') == 0 ? 'selected' : ''; ?>>Nav uzskaitē</option>
         </select>
-        <br><br>
+        
 
         <input type="submit" value="Izveidot">
 <?php echo form_close(); ?>
