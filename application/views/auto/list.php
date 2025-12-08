@@ -18,6 +18,7 @@
     <tbody>
         <?php foreach ($auto as $item): ?>
         <tr>
+            <!-- TODO: Add filtering options, search, pagination -->
             <td><?php echo html_escape($item['id']); ?></td>
             <td><?php echo html_escape($item['manufacturer_name']); ?></td>
             <td><?php echo date('d.m.Y', strtotime(html_escape($item['uzskaites_datums']))); ?></td>

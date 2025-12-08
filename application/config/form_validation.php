@@ -19,7 +19,7 @@ $config = array(
         array(
             'field' => 'modelis',
             'label' => 'Modelis',
-            'rules' => 'required|alpha_numeric_spaces|trim|max_length[255]'
+            'rules' => 'required|trim|max_length[255]|regex_match[/^[a-zA-Z0-9 \.\-\(\)\/]+$/]'
         ),
         array(
             'field' => 'ir_uzskaite',
