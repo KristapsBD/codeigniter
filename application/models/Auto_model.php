@@ -37,33 +37,22 @@ class Auto_model extends CI_Model {
     /**
      * Create new auto.
      * 
-     * @return bool
+     * @param array $data Auto data
+     * @return int 
      */
-    public function create_auto(): bool {
-        $data = array(
-            'razotajs_id' => $this->input->post('razotajs_id'),
-            'uzskaites_datums' => $this->input->post('uzskaites_datums'),
-            'registracijas_numurs' => $this->input->post('registracijas_numurs'),
-            'modelis' => $this->input->post('modelis'),
-            'ir_uzskaite' => $this->input->post('ir_uzskaite')
-        );
-        return $this->db->insert('auto', $data);
+    public function create_auto(array $data): int {
+        $this->db->insert('auto', $data);
+        return $this->db->insert_id();
     }
 
     /**
      * Update existing auto.
      * 
      * @param int $id Auto ID
+     * @param array $data Auto data
      * @return bool
      */
-    public function update_auto(int $id): bool {
-        $data = array(
-            'razotajs_id' => $this->input->post('razotajs_id'),
-            'uzskaites_datums' => $this->input->post('uzskaites_datums'),
-            'registracijas_numurs' => $this->input->post('registracijas_numurs'),
-            'modelis' => $this->input->post('modelis'),
-            'ir_uzskaite' => $this->input->post('ir_uzskaite')
-        );
+    public function update_auto(int $id, array $data): bool {
         $this->db->where('id', $id);
         return $this->db->update('auto', $data);
     }

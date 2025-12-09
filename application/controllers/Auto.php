@@ -49,14 +49,19 @@ class Auto extends MY_Controller {
     public function store(): void {
         $this->check_admin();
 
-        $data['manufacturers'] = $this->manufacturer_model->get_all_manufacturers();
-        $data['view_to_load'] = 'auto/create';
-        $data['page_title'] = 'Izveidot Auto';
-
         if ($this->form_validation->run('auto_creation') == FALSE) {
-            $this->load->view('layouts/main', $data);
+            $this->create();
         } else {
-            $this->auto_model->create_auto();
+            $data = array(
+                'razotajs_id' => $this->input->post('razotajs_id'),
+                'uzskaites_datums' => $this->input->post('uzskaites_datums'),
+                'registracijas_numurs' => $this->input->post('registracijas_numurs'),
+                'modelis' => $this->input->post('modelis'),
+                'ir_uzskaite' => $this->input->post('ir_uzskaite')
+            );
+            
+            $this->auto_model->create_auto($data);
+
             $this->session->set_flashdata('success', 'Ieraksts veiksmīgi izveidots');
             redirect('auto');
         }
@@ -79,6 +84,7 @@ class Auto extends MY_Controller {
         
         if (!$data['auto']) {
             show_404();
+            return;
         }
         
         $data['manufacturers'] = $this->manufacturer_model->get_all_manufacturers();
@@ -104,16 +110,22 @@ class Auto extends MY_Controller {
         
         if (!$data['auto']) {
             show_404();
+            return;
         }
         
-        $data['manufacturers'] = $this->manufacturer_model->get_all_manufacturers();
-        $data['view_to_load'] = 'auto/edit';
-        $data['page_title'] = 'Rediģēt Auto';
-
         if ($this->form_validation->run('auto_creation') == FALSE) {
-            $this->load->view('layouts/main', $data);
+            $this->edit((string) $id);
         } else {
-            $this->auto_model->update_auto($id);
+            $data = array(
+                'razotajs_id' => $this->input->post('razotajs_id'),
+                'uzskaites_datums' => $this->input->post('uzskaites_datums'),
+                'registracijas_numurs' => $this->input->post('registracijas_numurs'),
+                'modelis' => $this->input->post('modelis'),
+                'ir_uzskaite' => $this->input->post('ir_uzskaite')
+            );
+
+            $this->auto_model->update_auto($id, $data);
+
             $this->session->set_flashdata('success', 'Ieraksts veiksmīgi atjaunināts');
             redirect('auto');
         }
